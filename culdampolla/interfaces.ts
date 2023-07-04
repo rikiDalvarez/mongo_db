@@ -1,4 +1,4 @@
-export interface Product {
+export interface Provider {
   nombre: string;
   calle: string;
   numero: number;

@@ -1,24 +1,20 @@
 import "dotenv/config";
 import config from "./config";
-import { Product } from "./interfaces";
-import { MongoClient } from "mongodb";
-
-// Replace the uri string with your connection string.
+import { Provider } from "./interfaces";
+import { MongoClient, Db, Collection } from "mongodb";
 
 const client = new MongoClient(config.MONGO_URI);
 
-async function run() {
+async function run(): Promise<void> {
   try {
-    const culdampolla = client.db("culdampolla");
-    const providers = culdampolla.collection("providers");
+    const culdampolla: Db = client.db("culdampolla");
+    const providers: Collection<Provider> = culdampolla.collection("providers");
 
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { nombre: "test" };
-    const provider = await providers.findOne(query);
+    const query: Partial<Provider> = { nombre: "test" };
+    const provider: Provider | null = await providers.findOne(query);
 
     console.log(provider);
   } finally {
-    // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
