@@ -1,5 +1,5 @@
 import "dotenv/config";
-import config from "./config";
+import config from "../config/config";
 import { Provider } from "./interfaces";
 import { MongoClient, Db, Collection, ObjectId } from "mongodb";
 
