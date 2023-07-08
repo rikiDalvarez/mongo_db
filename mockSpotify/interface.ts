@@ -20,6 +20,7 @@ export interface User {
       security_code: String;
     };
     paypal_username: String;
+    totalPayment: [Date];
   };
   playlists: [
     {
@@ -44,6 +45,7 @@ export interface User {
   ];
   favoriteAlbums: [ObjectId];
   favoriteSongs: [ObjectId];
+  favoriteArtists: [ObjectId];
 }
 
 export interface Song {
