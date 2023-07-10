@@ -17,12 +17,13 @@ const client = new MongoClient(config.MONGO_URI);
 
 async function run(): Promise<void> {
   try {
+    await client.connect();
     //create db
     const mockYoutube: Db = client.db("mockYoutube");
     //create collection
     const users: Collection<User> = mockYoutube.collection("users");
 
-    const query: Partial<User> = { username: "riki" };
+    const query: Partial<User> = { username: "hello" };
 
     const user: User | null = await users.findOne(query);
 
@@ -35,6 +36,7 @@ async function run(): Promise<void> {
 //move to controller file
 async function insert(): Promise<void> {
   try {
+    await client.connect();
     //create db
     const mockYoutube: Db = client.db("mockYoutube");
     //create collection
@@ -43,9 +45,9 @@ async function insert(): Promise<void> {
 
     const user: User = {
       _id: new ObjectId(),
-      email: "riki@",
+      email: "hello@",
       password: "test",
-      username: "riki",
+      username: "hello",
       date_of_birth: new Date(),
       gender: "male",
       postal_code: "riki",
@@ -63,5 +65,13 @@ async function insert(): Promise<void> {
   }
 }
 
-run().catch(console.dir);
-insert().catch(console.dir);
+async function runQuerys() {
+  try {
+    await insert();
+    await run();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+runQuerys();
