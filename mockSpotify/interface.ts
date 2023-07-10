@@ -20,7 +20,7 @@ export interface User {
       security_code: String;
     };
     paypal_username: String;
-    totalPayment: [Date];
+    totalPayments: [Date];
   };
   playlists: [
     {

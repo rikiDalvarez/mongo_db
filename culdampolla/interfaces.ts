@@ -35,8 +35,8 @@ export interface Eyewear {
 
 export interface Clients {
   _id: ObjectId;
-  name: String;
-  address: String;
+  name: string;
+  address: string;
   phone: String;
   email: String;
   registrationDate: Date;
